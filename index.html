@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>War Thuth</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom, #0057b7, #ffd700);
+        color: #000;
+    }
+
+    /* Кнопка зміни мови */
+    .lang-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-weight: bold;
+    }
+
+    .lang-btn:hover {
+        background: #f1f1f1;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 60px;
+        font-size: 60px;
+        font-weight: bold;
+        color: white;
+        text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    }
+</style>
+</head>
+
+<body>
+
+    <button class="lang-btn" onclick="changeLanguage()">EN / UA / RU</button>
+
+    <h1 id="title">War Thuth</h1>
+
+<script>
+let currentLang = "EN";
+
+function changeLanguage() {
+    const title = document.getElementById("title");
+
+    if (currentLang === "EN") {
+        title.innerText = "Істина про війну";
+        currentLang = "UA";
+    } 
+    else if (currentLang === "UA") {
+        title.innerText = "Истина о войне";
+        currentLang = "RU";
+    } 
+    else {
+        title.innerText = "War Thuth";
+        currentLang = "EN";
+    }
+}
+</script>
+
+</body>
+</html>
