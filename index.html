@@ -8,8 +8,7 @@
     body {
         margin: 0;
         font-family: Arial, sans-serif;
-        background: linear-gradient(to bottom, #0057b7, #ffd700);
-        color: #000;
+        background-color:white
     }
 
     /* Кнопка зміни мови */
@@ -55,11 +54,11 @@ function changeLanguage() {
     const title = document.getElementById("title");
 
     if (currentLang === "EN") {
-        title.innerText = "Істина про війну";
+        title.innerText = "Правда Війни";
         currentLang = "UA";
     } 
     else if (currentLang === "UA") {
-        title.innerText = "Истина о войне";
+        title.innerText = "Правда Войны";
         currentLang = "RU";
     } 
     else {
