@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>War Truth</title>
-
+<meta charset="UTF-8" />
+<title>War Truth / Правда Війни</title>
 <style>
     body {
         margin: 0;
         font-family: Arial, sans-serif;
-
-        /* Паралакс — НЕ впливає на блоки */
         background: linear-gradient(180deg, #0057b7 0%, #ffd700 100%);
         background-size: 100% 200%;
         animation: bgParallax 15s linear infinite;
+        color: #222;
     }
 
     @keyframes bgParallax {
@@ -33,8 +31,8 @@
         cursor: pointer;
         font-weight: bold;
         transition: 0.3s;
+        z-index: 1000;
     }
-
     .lang-btn:hover {
         transform: scale(1.08);
         box-shadow: 0 0 15px white;
@@ -42,7 +40,7 @@
 
     h1 {
         text-align: center;
-        margin-top: 100px;
+        margin-top: 80px;
         font-size: 60px;
         color: white;
         text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
@@ -50,30 +48,33 @@
 
     .info {
         background: #ffffffdd;
-        margin: 40px auto;
+        margin: 40px auto 80px auto;
         padding: 30px;
         max-width: 900px;
         border-radius: 15px;
         font-size: 20px;
         line-height: 1.6;
         box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-
-        /* САМИЙ ВАЖЛИВИЙ МОМЕНТ */
-        /* НІЯКИХ transform — лише opacity */
         transition: opacity 0.4s ease;
         opacity: 1;
+        color: #222;
     }
-
-    /* Анімація мови: без transform, тільки opacity */
-    .fade-out { opacity: 0; }
-    .fade-in  { opacity: 1; }
 
     .info h2 {
         text-align: center;
+        margin-top: 30px;
+        font-weight: bold;
+        color: #111;
     }
+
+    .info p {
+        margin: 15px 0;
+    }
+
+    .fade-out { opacity: 0; }
+    .fade-in  { opacity: 1; }
 </style>
 </head>
-
 <body>
 
 <button class="lang-btn" onclick="changeLanguage()">EN / UA / RU</button>
@@ -82,11 +83,20 @@
 
 <div class="info" id="infoText">
     <h2>Russia's War Against Ukraine</h2>
-    <p>Russia launched a full-scale invasion...</p>
+    <p>On February 24, 2022, Russia launched a full-scale invasion of Ukraine, marking a significant escalation of the conflict that began in 2014.</p>
+    <p>The international community condemned the attack and many countries imposed severe sanctions on Russia.</p>
+
     <h2>Luhansk Region</h2>
-    <p>The Luhansk region became...</p>
+    <p>The Luhansk region has been one of the major hotspots, witnessing intense fighting and heavy casualties on both sides.</p>
+    <p>Efforts to secure humanitarian corridors and provide aid continue amid ongoing hostilities.</p>
+
     <h2>Donetsk Airport</h2>
-    <p>Symbol of Ukrainian resistance...</p>
+    <p>Donetsk Airport became a symbol of Ukrainian resistance with heroic defenders holding out against overwhelming odds for 242 days.</p>
+    <p>The term "cyborgs" was coined to honor the courage and resilience of these defenders.</p>
+
+    <h2>International Support</h2>
+    <p>Ukraine has received military, financial, and humanitarian support from numerous countries, bolstering its defense capabilities.</p>
+    <p>Global solidarity has been expressed through rallies, sanctions, and diplomatic efforts.</p>
 </div>
 
 <script>
@@ -99,40 +109,64 @@ function changeLanguage() {
     info.classList.add("fade-out");
 
     setTimeout(() => {
-
         if (currentLang === "EN") {
             title.innerText = "Правда Війни";
             info.innerHTML = `
                 <h2>Війна Росії проти України</h2>
-                <p>24 лютого 2022 почалося вторгнення...</p>
+                <p>24 лютого 2022 року Росія розпочала повномасштабне вторгнення в Україну, що стало значним ескалаційним етапом конфлікту, який триває з 2014 року.</p>
+                <p>Міжнародна спільнота засудила напад, а багато країн ввели суворі санкції проти Росії.</p>
+
                 <h2>Луганська область</h2>
-                <p>Один із головних епіцентрів боїв...</p>
+                <p>Луганська область є одним із головних епіцентрів боїв з важкими втратами для обох сторін.</p>
+                <p>Тривають зусилля щодо забезпечення гуманітарних коридорів та надання допомоги в умовах війни.</p>
+
                 <h2>Донецький аеропорт</h2>
-                <p>242 дні легендарної оборони...</p>
+                <p>Донецький аеропорт став символом українського спротиву — оборонці тримали позиції 242 дні всупереч переважаючим силам.</p>
+                <p>Термін "кіборги" увійшов в ужиток на честь їхньої відваги та витривалості.</p>
+
+                <h2>Міжнародна підтримка</h2>
+                <p>Україна отримала військову, фінансову та гуманітарну допомогу від багатьох країн, що посилило її обороноздатність.</p>
+                <p>Світова солідарність проявляється через мітинги, санкції та дипломатичні зусилля.</p>
             `;
             currentLang = "UA";
-
         } else if (currentLang === "UA") {
             title.innerText = "Правда Войны";
             info.innerHTML = `
                 <h2>Война России против Украины</h2>
-                <p>24 февраля 2022 началось вторжение...</p>
+                <p>24 февраля 2022 года Россия начала полномасштабное вторжение в Украину, что стало значительным этапом эскалации конфликта, который продолжается с 2014 года.</p>
+                <p>Международное сообщество осудило нападение, многие страны ввели строгие санкции против России.</p>
+
                 <h2>Луганская область</h2>
-                <p>Крупный центр боев с 2014 года...</p>
+                <p>Луганская область является одним из главных очагов боевых действий с тяжелыми потерями для обеих сторон.</p>
+                <p>Продолжаются усилия по обеспечению гуманитарных коридоров и оказанию помощи в условиях войны.</p>
+
                 <h2>Донецкий аэропорт</h2>
-                <p>242 дня обороны. Защитники — "киборги".</p>
+                <p>Донецкий аэропорт стал символом украинского сопротивления — защитники удерживали позиции 242 дня несмотря на превосходящие силы.</p>
+                <p>Термин "киборги" вошел в употребление в честь их мужества и выносливости.</p>
+
+                <h2>Международная поддержка</h2>
+                <p>Украина получила военную, финансовую и гуманитарную помощь от многих стран, что укрепило её обороноспособность.</p>
+                <p>Мировая солидарность проявляется через митинги, санкции и дипломатические усилия.</p>
             `;
             currentLang = "RU";
-
         } else {
             title.innerText = "War Truth";
             info.innerHTML = `
                 <h2>Russia's War Against Ukraine</h2>
-                <p>Russia launched a full-scale invasion...</p>
+                <p>On February 24, 2022, Russia launched a full-scale invasion of Ukraine, marking a significant escalation of the conflict that began in 2014.</p>
+                <p>The international community condemned the attack and many countries imposed severe sanctions on Russia.</p>
+
                 <h2>Luhansk Region</h2>
-                <p>Main hotspot since 2014...</p>
+                <p>The Luhansk region has been one of the major hotspots, witnessing intense fighting and heavy casualties on both sides.</p>
+                <p>Efforts to secure humanitarian corridors and provide aid continue amid ongoing hostilities.</p>
+
                 <h2>Donetsk Airport</h2>
-                <p>Symbol of Ukrainian heroism...</p>
+                <p>Donetsk Airport became a symbol of Ukrainian resistance with heroic defenders holding out against overwhelming odds for 242 days.</p>
+                <p>The term "cyborgs" was coined to honor the courage and resilience of these defenders.</p>
+
+                <h2>International Support</h2>
+                <p>Ukraine has received military, financial, and humanitarian support from numerous countries, bolstering its defense capabilities.</p>
+                <p>Global solidarity has been expressed through rallies, sanctions, and diplomatic efforts.</p>
             `;
             currentLang = "EN";
         }
@@ -141,7 +175,6 @@ function changeLanguage() {
         info.classList.add("fade-in");
 
         setTimeout(() => info.classList.remove("fade-in"), 400);
-
     }, 400);
 }
 </script>
