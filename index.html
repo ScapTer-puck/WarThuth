@@ -9,11 +9,10 @@
         margin: 0;
         font-family: Arial, sans-serif;
 
-        /* Паралакс */
+        /* Паралакс — НЕ впливає на блоки */
         background: linear-gradient(180deg, #0057b7 0%, #ffd700 100%);
         background-size: 100% 200%;
-        animation: bgParallax 20s linear infinite;
-        color: #222;
+        animation: bgParallax 15s linear infinite;
     }
 
     @keyframes bgParallax {
@@ -47,14 +46,6 @@
         font-size: 60px;
         color: white;
         text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
-
-        opacity: 0;
-        animation: fadeDown 1.5s forwards;
-    }
-
-    @keyframes fadeDown {
-        from { opacity: 0; transform: translateY(-40px); }
-        to   { opacity: 1; transform: translateY(0); }
     }
 
     .info {
@@ -66,31 +57,23 @@
         font-size: 20px;
         line-height: 1.6;
         box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        transition: opacity 0.4s;
+
+        /* САМИЙ ВАЖЛИВИЙ МОМЕНТ */
+        /* НІЯКИХ transform — лише opacity */
+        transition: opacity 0.4s ease;
         opacity: 1;
     }
+
+    /* Анімація мови: без transform, тільки opacity */
+    .fade-out { opacity: 0; }
+    .fade-in  { opacity: 1; }
 
     .info h2 {
-        font-size: 32px;
         text-align: center;
-        transition: 0.2s;
-    }
-
-    .info h2:hover {
-        transform: scale(1.05);
-        color: #0057b7;
-    }
-
-    /* ПЛАВНИЙ ПЕРЕХІД БЕЗ transform !!! */
-    .fade-out {
-        opacity: 0;
-    }
-
-    .fade-in {
-        opacity: 1;
     }
 </style>
 </head>
+
 <body>
 
 <button class="lang-btn" onclick="changeLanguage()">EN / UA / RU</button>
@@ -103,7 +86,7 @@
     <h2>Luhansk Region</h2>
     <p>The Luhansk region became...</p>
     <h2>Donetsk Airport</h2>
-    <p>Donetsk Airport became...</p>
+    <p>Symbol of Ukrainian resistance...</p>
 </div>
 
 <script>
@@ -116,45 +99,38 @@ function changeLanguage() {
     info.classList.add("fade-out");
 
     setTimeout(() => {
+
         if (currentLang === "EN") {
             title.innerText = "Правда Війни";
             info.innerHTML = `
                 <h2>Війна Росії проти України</h2>
-                <p>24 лютого 2022 року Росія розпочала повномасштабне вторгнення...</p>
-
+                <p>24 лютого 2022 почалося вторгнення...</p>
                 <h2>Луганська область</h2>
-                <p>Один із головних епіцентрів бойових дій з 2014 року...</p>
-
+                <p>Один із головних епіцентрів боїв...</p>
                 <h2>Донецький аеропорт</h2>
                 <p>242 дні легендарної оборони...</p>
             `;
             currentLang = "UA";
 
         } else if (currentLang === "UA") {
-
             title.innerText = "Правда Войны";
             info.innerHTML = `
                 <h2>Война России против Украины</h2>
-                <p>24 февраля 2022 года началось полномасштабное вторжение...</p>
-
+                <p>24 февраля 2022 началось вторжение...</p>
                 <h2>Луганская область</h2>
-                <p>Крупный центр боевых действий с 2014 года...</p>
-
+                <p>Крупный центр боев с 2014 года...</p>
                 <h2>Донецкий аэропорт</h2>
                 <p>242 дня обороны. Защитники — "киборги".</p>
             `;
             currentLang = "RU";
 
         } else {
-
             title.innerText = "War Truth";
             info.innerHTML = `
                 <h2>Russia's War Against Ukraine</h2>
                 <p>Russia launched a full-scale invasion...</p>
-
                 <h2>Luhansk Region</h2>
-                <p>Main hotspot of aggression since 2014...</p>
-
+                <p>Main hotspot since 2014...</p>
                 <h2>Donetsk Airport</h2>
                 <p>Symbol of Ukrainian heroism...</p>
             `;
