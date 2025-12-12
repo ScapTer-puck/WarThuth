@@ -9,9 +9,19 @@
         margin: 0;
         font-family: Arial, sans-serif;
         background: linear-gradient(180deg, #0057b7 0%, #ffd700 100%);
+        background-size: 200% 200%;
+        animation: bgMove 12s ease infinite;
         color: #222;
     }
 
+    /* Анімація руху градієнта */
+    @keyframes bgMove {
+        0% { background-position: 0% 0%; }
+        50% { background-position: 0% 100%; }
+        100% { background-position: 0% 0%; }
+    }
+
+    /* Кнопка зміни мови */
     .lang-btn {
         position: fixed;
         top: 20px;
@@ -23,7 +33,7 @@
         font-size: 18px;
         cursor: pointer;
         font-weight: bold;
-        transition: 0.2s;
+        transition: 0.3s;
         width: auto;
         display: block;
     }
@@ -31,6 +41,7 @@
     .lang-btn:hover {
         background: #fff;
         transform: scale(1.05);
+        box-shadow: 0 0 12px rgba(255,255,255,0.8);
     }
 
     h1 {
@@ -40,8 +51,18 @@
         font-weight: bold;
         color: white;
         text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+
+        opacity: 0;
+        animation: fadeDown 1.8s forwards;
     }
 
+    /* Анімація заголовка */
+    @keyframes fadeDown {
+        0% { opacity: 0; transform: translateY(-40px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Блок інформації */
     .info {
         background: #ffffffdd;
         margin: 40px auto;
@@ -51,6 +72,26 @@
         font-size: 20px;
         line-height: 1.6;
         box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+
+        opacity: 0;
+        transform: translateY(60px);
+        animation: slideUp 1.5s forwards 0.5s;
+    }
+
+    /* Анімація появи інформаційного блоку */
+    @keyframes slideUp {
+        0% { opacity: 0; transform: translateY(60px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Анімація при зміні мови */
+    .fade {
+        animation: fadeSwitch 0.5s;
+    }
+
+    @keyframes fadeSwitch {
+        0% { opacity: 0; transform: scale(0.95); }
+        100% { opacity: 1; transform: scale(1); }
     }
 
     .info h2 {
@@ -68,7 +109,6 @@
 <h1 id="title">War Truth</h1>
 
 <div class="info" id="infoText">
-    <!-- DEFAULT LANGUAGE: EN -->
     <h2>Russia's War Against Ukraine</h2>
     <p>
         Russia launched a full-scale invasion of Ukraine on February 24, 2022...
@@ -76,12 +116,12 @@
 
     <h2>Luhansk Region</h2>
     <p>
-        The Luhansk region has been one of the key areas of Russia’s aggression since 2014...
+        The Luhansk region has been one of the key hotspots...
     </p>
 
     <h2>Donetsk Airport</h2>
     <p>
-        The Donetsk International Airport became a symbol of Ukrainian resistance...
+        Donetsk Airport became a symbol of Ukrainian resistance...
     </p>
 </div>
 
@@ -92,31 +132,21 @@ function changeLanguage() {
     const title = document.getElementById("title");
     const info = document.getElementById("infoText");
 
+    info.classList.remove("fade");
+    void info.offsetWidth; // reset animation
+    info.classList.add("fade");
+
     if (currentLang === "EN") {
         title.innerText = "Правда Війни";
         info.innerHTML = `
             <h2>Війна Росії проти України</h2>
-            <p>
-                24 лютого 2022 року Росія розпочала повномасштабне вторгнення в Україну.
-                Ця війна призвела до великих руйнувань, тисяч жертв серед цивільних
-                та мільйонів вимушених переселенців.
-            </p>
+            <p>24 лютого 2022 року Росія розпочала повномасштабне вторгнення...</p>
 
             <h2>Луганська область</h2>
-            <p>
-                Луганська область стала одним із головних епіцентрів російської агресії ще у 2014 році.
-                Міста Сєвєродонецьк, Лисичанськ, Рубіжне та багато інших були частково або повністю
-                знищені під час бойових дій. Після вторгнення 2022 року на території області відбувалися
-                важкі бої, у тому числі за Кремінну та Білогорівку.
-            </p>
+            <p>Луганська область стала одним із головних епіцентрів агресії...</p>
 
             <h2>Донецький аеропорт</h2>
-            <p>
-                Донецький міжнародний аеропорт — один із найвідоміших символів українського спротиву.
-                Бої тривали 242 дні, з травня 2014 до січня 2015 року. Захисників прозвали
-                "кіборгами" за їхню незламність. Попри повне руйнування терміналів, оборона аеропорту
-                стала однією з найгероїчніших сторінок сучасної української історії.
-            </p>
+            <p>Донецький міжнародний аеропорт — символ українського спротиву...</p>
         `;
         currentLang = "UA";
 
@@ -124,26 +154,13 @@ function changeLanguage() {
         title.innerText = "Правда Войны";
         info.innerHTML = `
             <h2>Война России против Украины</h2>
-            <p>
-                24 февраля 2022 года Россия начала полномасштабное вторжение.
-                Эта война привела к огромным разрушениям и тысячам жертв.
-            </p>
+            <p>24 февраля 2022 года Россия начала полномасштабное вторжение...</p>
 
             <h2>Луганская область</h2>
-            <p>
-                Луганская область стала одним из главных центров российской агрессии ещё с 2014 года.
-                Города Северодонецк, Лисичанск, Рубежное и другие были частично или полностью разрушены.
-                После вторжения 2022 года на территории области происходили тяжёлые бои, включая Кременную
-                и Белогоровку.
-            </p>
+            <p>Луганская область стала одним из эпицентров агрессии...</p>
 
             <h2>Донецкий аэропорт</h2>
-            <p>
-                Донецкий международный аэропорт стал символом украинского сопротивления.
-                Бои продолжались 242 дня — с мая 2014 по январь 2015 года. Защитников прозвали
-                "киборгами" за невероятную стойкость. Несмотря на полное разрушение терминалов,
-                оборона аэропорта стала одной из самых героических страниц современной истории Украины.
-            </p>
+            <p>Донецкий аэропорт — один из символов украинского сопротивления...</p>
         `;
         currentLang = "RU";
 
@@ -151,26 +168,13 @@ function changeLanguage() {
         title.innerText = "War Truth";
         info.innerHTML = `
             <h2>Russia's War Against Ukraine</h2>
-            <p>
-                Russia launched a full-scale invasion of Ukraine on February 24, 2022.
-                The war caused massive destruction and countless civilian casualties.
-            </p>
+            <p>Russia launched a full-scale invasion of Ukraine on February 24, 2022...</p>
 
             <h2>Luhansk Region</h2>
-            <p>
-                The Luhansk region has been one of the main hotspots of Russian aggression since 2014.
-                Cities such as Sievierodonetsk, Lysychansk, and Rubizhne were heavily damaged or destroyed.
-                After the 2022 invasion, intense battles continued around Kreminna and Bilohorivka.
-            </p>
+            <p>The Luhansk region has been one of the main hotspots...</p>
 
             <h2>Donetsk Airport</h2>
-            <p>
-                The Donetsk International Airport became a symbol of Ukrainian resistance.
-                The battle lasted 242 days — from May 2014 to January 2015. Ukrainian defenders,
-                nicknamed “cyborgs,” held their positions despite overwhelming attacks.
-                Though the airport was completely destroyed, its defense became one of the
-                most heroic episodes in modern Ukrainian history.
-            </p>
+            <p>The Donetsk Airport became a symbol of Ukrainian resistance...</p>
         `;
         currentLang = "EN";
     }
