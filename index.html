@@ -12,7 +12,6 @@
         color: #222;
     }
 
-    /* Кнопка зміни мови */
     .lang-btn {
         position: fixed;
         top: 20px;
@@ -43,7 +42,6 @@
         text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
     }
 
-    /* Блок інформації */
     .info {
         background: #ffffffdd;
         margin: 40px auto;
@@ -65,20 +63,27 @@
 
 <body>
 
-    <button class="lang-btn" onclick="changeLanguage()">EN / UA / RU</button>
+<button class="lang-btn" onclick="changeLanguage()">EN / UA / RU</button>
 
-    <h1 id="title">War Truth</h1>
+<h1 id="title">War Truth</h1>
 
-    <div class="info" id="infoText">
-        <h2>Russia's War Against Ukraine</h2>
-        <p>
-            Russia launched a full-scale invasion of Ukraine on February 24, 2022. 
-            This war brought massive destruction, thousands of civilian casualties, 
-            and millions of displaced people. Ukraine continues defending its 
-            sovereignty and territorial integrity despite constant missile attacks, 
-            occupation of territories, and war crimes documented by international organizations.
-        </p>
-    </div>
+<div class="info" id="infoText">
+    <!-- DEFAULT LANGUAGE: EN -->
+    <h2>Russia's War Against Ukraine</h2>
+    <p>
+        Russia launched a full-scale invasion of Ukraine on February 24, 2022...
+    </p>
+
+    <h2>Luhansk Region</h2>
+    <p>
+        The Luhansk region has been one of the key areas of Russia’s aggression since 2014...
+    </p>
+
+    <h2>Donetsk Airport</h2>
+    <p>
+        The Donetsk International Airport became a symbol of Ukrainian resistance...
+    </p>
+</div>
 
 <script>
 let currentLang = "EN";
@@ -93,38 +98,78 @@ function changeLanguage() {
             <h2>Війна Росії проти України</h2>
             <p>
                 24 лютого 2022 року Росія розпочала повномасштабне вторгнення в Україну.
-                Ця війна призвела до великих руйнувань, тисяч жертв серед цивільних 
-                та мільйонів вимушених переселенців. Україна продовжує боротися за свою 
-                незалежність та територіальну цілісність, попри постійні ракетні удари, 
-                окупацію територій та воєнні злочини, задокументовані міжнародними організаціями.
+                Ця війна призвела до великих руйнувань, тисяч жертв серед цивільних
+                та мільйонів вимушених переселенців.
+            </p>
+
+            <h2>Луганська область</h2>
+            <p>
+                Луганська область стала одним із головних епіцентрів російської агресії ще у 2014 році.
+                Міста Сєвєродонецьк, Лисичанськ, Рубіжне та багато інших були частково або повністю
+                знищені під час бойових дій. Після вторгнення 2022 року на території області відбувалися
+                важкі бої, у тому числі за Кремінну та Білогорівку.
+            </p>
+
+            <h2>Донецький аеропорт</h2>
+            <p>
+                Донецький міжнародний аеропорт — один із найвідоміших символів українського спротиву.
+                Бої тривали 242 дні, з травня 2014 до січня 2015 року. Захисників прозвали
+                "кіборгами" за їхню незламність. Попри повне руйнування терміналів, оборона аеропорту
+                стала однією з найгероїчніших сторінок сучасної української історії.
             </p>
         `;
         currentLang = "UA";
-    } 
-    else if (currentLang === "UA") {
+
+    } else if (currentLang === "UA") {
         title.innerText = "Правда Войны";
         info.innerHTML = `
             <h2>Война России против Украины</h2>
             <p>
-                24 февраля 2022 года Россия начала полномасштабное вторжение в Украину.
-                Эта война привела к огромным разрушениям, тысячам жертв среди мирных жителей 
-                и миллионам беженцев. Украина продолжает защищать свою независимость и 
-                территориальную целостность, несмотря на постоянные ракетные удары, 
-                оккупацию территорий и военные преступления, подтвержденные международными организациями.
+                24 февраля 2022 года Россия начала полномасштабное вторжение.
+                Эта война привела к огромным разрушениям и тысячам жертв.
+            </p>
+
+            <h2>Луганская область</h2>
+            <p>
+                Луганская область стала одним из главных центров российской агрессии ещё с 2014 года.
+                Города Северодонецк, Лисичанск, Рубежное и другие были частично или полностью разрушены.
+                После вторжения 2022 года на территории области происходили тяжёлые бои, включая Кременную
+                и Белогоровку.
+            </p>
+
+            <h2>Донецкий аэропорт</h2>
+            <p>
+                Донецкий международный аэропорт стал символом украинского сопротивления.
+                Бои продолжались 242 дня — с мая 2014 по январь 2015 года. Защитников прозвали
+                "киборгами" за невероятную стойкость. Несмотря на полное разрушение терминалов,
+                оборона аэропорта стала одной из самых героических страниц современной истории Украины.
             </p>
         `;
         currentLang = "RU";
-    } 
-    else {
+
+    } else {
         title.innerText = "War Truth";
         info.innerHTML = `
             <h2>Russia's War Against Ukraine</h2>
             <p>
                 Russia launched a full-scale invasion of Ukraine on February 24, 2022.
-                This war brought massive destruction, thousands of civilian casualties, 
-                and millions of displaced people. Ukraine continues defending its 
-                sovereignty and territorial integrity despite constant missile attacks, 
-                occupation of territories, and documented war crimes.
+                The war caused massive destruction and countless civilian casualties.
+            </p>
+
+            <h2>Luhansk Region</h2>
+            <p>
+                The Luhansk region has been one of the main hotspots of Russian aggression since 2014.
+                Cities such as Sievierodonetsk, Lysychansk, and Rubizhne were heavily damaged or destroyed.
+                After the 2022 invasion, intense battles continued around Kreminna and Bilohorivka.
+            </p>
+
+            <h2>Donetsk Airport</h2>
+            <p>
+                The Donetsk International Airport became a symbol of Ukrainian resistance.
+                The battle lasted 242 days — from May 2014 to January 2015. Ukrainian defenders,
+                nicknamed “cyborgs,” held their positions despite overwhelming attacks.
+                Though the airport was completely destroyed, its defense became one of the
+                most heroic episodes in modern Ukrainian history.
             </p>
         `;
         currentLang = "EN";
