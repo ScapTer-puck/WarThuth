@@ -8,20 +8,21 @@
     body {
         margin: 0;
         font-family: Arial, sans-serif;
+
+        /* Паралакс-фон */
         background: linear-gradient(180deg, #0057b7 0%, #ffd700 100%);
-        background-size: 200% 200%;
-        animation: bgMove 12s ease infinite;
+        background-size: 100% 200%;
+        animation: bgParallax 20s linear infinite;
         color: #222;
     }
 
-    /* Анімація руху градієнта */
-    @keyframes bgMove {
-        0% { background-position: 0% 0%; }
-        50% { background-position: 0% 100%; }
-        100% { background-position: 0% 0%; }
+    /* Паралакс-рух фону */
+    @keyframes bgParallax {
+        0% { background-position: 0 0; }
+        50% { background-position: 0 100%; }
+        100% { background-position: 0 0; }
     }
 
-    /* Кнопка зміни мови */
     .lang-btn {
         position: fixed;
         top: 20px;
@@ -34,14 +35,14 @@
         cursor: pointer;
         font-weight: bold;
         transition: 0.3s;
-        width: auto;
-        display: block;
+
+        /* Hover animation (7) */
+        box-shadow: 0 0 0 rgba(0,0,0,0);
     }
 
     .lang-btn:hover {
-        background: #fff;
-        transform: scale(1.05);
-        box-shadow: 0 0 12px rgba(255,255,255,0.8);
+        transform: scale(1.08);
+        box-shadow: 0 0 15px rgba(255,255,255,0.9);
     }
 
     h1 {
@@ -56,13 +57,11 @@
         animation: fadeDown 1.8s forwards;
     }
 
-    /* Анімація заголовка */
     @keyframes fadeDown {
         0% { opacity: 0; transform: translateY(-40px); }
         100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* Блок інформації */
     .info {
         background: #ffffffdd;
         margin: 40px auto;
@@ -76,29 +75,55 @@
         opacity: 0;
         transform: translateY(60px);
         animation: slideUp 1.5s forwards 0.5s;
+
+        /* Hover animation (7) */
+        transition: 0.3s;
     }
 
-    /* Анімація появи інформаційного блоку */
+    .info:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
     @keyframes slideUp {
         0% { opacity: 0; transform: translateY(60px); }
         100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* Анімація при зміні мови */
-    .fade {
-        animation: fadeSwitch 0.5s;
+    /* Анімація зміни мови (6) */
+    .fade-out {
+        animation: fadeOut 0.4s forwards;
     }
 
-    @keyframes fadeSwitch {
-        0% { opacity: 0; transform: scale(0.95); }
-        100% { opacity: 1; transform: scale(1); }
+    .fade-in {
+        animation: fadeIn 0.4s forwards;
+    }
+
+    @keyframes fadeOut {
+        from { opacity: 1; transform: scale(1); }
+        to   { opacity: 0; transform: scale(0.97); }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.97); }
+        to   { opacity: 1; transform: scale(1); }
     }
 
     .info h2 {
         margin-top: 0;
         font-size: 32px;
         text-align: center;
+
+        /* Hover animation (7) */
+        transition: 0.25s;
     }
+
+    .info h2:hover {
+        color: #0057b7;
+        transform: scale(1.05);
+        text-shadow: 0 0 10px rgba(0,87,183,0.3);
+    }
+
 </style>
 </head>
 
@@ -111,17 +136,18 @@
 <div class="info" id="infoText">
     <h2>Russia's War Against Ukraine</h2>
     <p>
-        Russia launched a full-scale invasion of Ukraine on February 24, 2022...
+        Russia launched a full-scale invasion of Ukraine on February 24, 2022. This war caused enormous
+        destruction, thousands of civilian casualties, and millions of displaced people.
     </p>
 
     <h2>Luhansk Region</h2>
     <p>
-        The Luhansk region has been one of the key hotspots...
+        The Luhansk region became one of the main hotspots of Russian aggression starting in 2014.
     </p>
 
     <h2>Donetsk Airport</h2>
     <p>
-        Donetsk Airport became a symbol of Ukrainian resistance...
+        Donetsk International Airport became a legendary symbol of Ukrainian resistance.
     </p>
 </div>
 
@@ -132,52 +158,62 @@ function changeLanguage() {
     const title = document.getElementById("title");
     const info = document.getElementById("infoText");
 
-    info.classList.remove("fade");
-    void info.offsetWidth; // reset animation
-    info.classList.add("fade");
+    info.classList.add("fade-out");
 
-    if (currentLang === "EN") {
-        title.innerText = "Правда Війни";
-        info.innerHTML = `
-            <h2>Війна Росії проти України</h2>
-            <p>24 лютого 2022 року Росія розпочала повномасштабне вторгнення...</p>
+    setTimeout(() => {
 
-            <h2>Луганська область</h2>
-            <p>Луганська область стала одним із головних епіцентрів агресії...</p>
+        if (currentLang === "EN") {
 
-            <h2>Донецький аеропорт</h2>
-            <p>Донецький міжнародний аеропорт — символ українського спротиву...</p>
-        `;
-        currentLang = "UA";
+            title.innerText = "Правда Війни";
+            info.innerHTML = `
+                <h2>Війна Росії проти України</h2>
+                <p>24 лютого 2022 року Росія розпочала повномасштабне вторгнення...</p>
 
-    } else if (currentLang === "UA") {
-        title.innerText = "Правда Войны";
-        info.innerHTML = `
-            <h2>Война России против Украины</h2>
-            <p>24 февраля 2022 года Россия начала полномасштабное вторжение...</p>
+                <h2>Луганська область</h2>
+                <p>Один із головних епіцентрів бойових дій з 2014 року...</p>
 
-            <h2>Луганская область</h2>
-            <p>Луганская область стала одним из эпицентров агрессии...</p>
+                <h2>Донецький аеропорт</h2>
+                <p>242 дні оборони. Захисників прозвали "кіборгами".</p>
+            `;
+            currentLang = "UA";
 
-            <h2>Донецкий аэропорт</h2>
-            <p>Донецкий аэропорт — один из символов украинского сопротивления...</p>
-        `;
-        currentLang = "RU";
+        } else if (currentLang === "UA") {
 
-    } else {
-        title.innerText = "War Truth";
-        info.innerHTML = `
-            <h2>Russia's War Against Ukraine</h2>
-            <p>Russia launched a full-scale invasion of Ukraine on February 24, 2022...</p>
+            title.innerText = "Правда Войны";
+            info.innerHTML = `
+                <h2>Война России против Украины</h2>
+                <p>24 февраля 2022 года началось полномасштабное вторжение...</p>
 
-            <h2>Luhansk Region</h2>
-            <p>The Luhansk region has been one of the main hotspots...</p>
+                <h2>Луганская область</h2>
+                <p>Один из ключевых регионов боевых действий с 2014 года...</p>
 
-            <h2>Donetsk Airport</h2>
-            <p>The Donetsk Airport became a symbol of Ukrainian resistance...</p>
-        `;
-        currentLang = "EN";
-    }
+                <h2>Донецкий аэропорт</h2>
+                <p>242 дня битвы сделали защитников "киборгами".</p>
+            `;
+            currentLang = "RU";
+
+        } else {
+
+            title.innerText = "War Truth";
+            info.innerHTML = `
+                <h2>Russia's War Against Ukraine</h2>
+                <p>Russia launched a full-scale invasion on February 24, 2022...</p>
+
+                <h2>Luhansk Region</h2>
+                <p>A key hotspot of Russian aggression since 2014...</p>
+
+                <h2>Donetsk Airport</h2>
+                <p>Symbol of Ukrainian heroism and resistance.</p>
+            `;
+            currentLang = "EN";
+        }
+
+        info.classList.remove("fade-out");
+        info.classList.add("fade-in");
+
+        setTimeout(() => info.classList.remove("fade-in"), 400);
+
+    }, 400);
 }
 </script>
 
